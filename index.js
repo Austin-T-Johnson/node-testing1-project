@@ -8,10 +8,10 @@
  */
 function trimProperties(obj) {
     let newObj = {}
-  for(let prop in obj) {
-   newObj[prop] = obj[prop].trim()
-  }
-  return newObj;
+    for (let prop in obj) {
+        newObj[prop] = obj[prop].trim()
+    }
+    return newObj;
 }
 
 /**
@@ -23,8 +23,8 @@ function trimProperties(obj) {
  * trimPropertiesMutation({ name: '  jane  ' }) // returns the object mutated in place { name: 'jane' }
  */
 function trimPropertiesMutation(obj) {
-    
-    for(let prop in obj) {
+
+    for (let prop in obj) {
         obj[prop] = obj[prop].trim()
     }
     return obj;
@@ -41,7 +41,7 @@ function trimPropertiesMutation(obj) {
 function findLargestInteger(integers) {
     let result = integers[0].integer
     for (let i = 1; i < integers.length; i++) {
-        if(integers[i].integer > result) {
+        if (integers[i].integer > result) {
             result = integers[i].integer
         }
     }
@@ -54,7 +54,7 @@ class Counter {
      * @param {number} initialNumber - the initial state of the count
      */
     constructor(initialNumber) {
-       this.count = initialNumber
+        this.count = initialNumber
     }
 
     /**
@@ -70,7 +70,7 @@ class Counter {
      * counter.countDown() // returns 0
      */
     countDown() {
-     return this.count > 0 ? this.count-- : 0
+        return this.count > 0 ? this.count-- : 0
     }
 }
 
@@ -79,8 +79,8 @@ class Seasons {
      * [Exercise 5A] Seasons creates a seasons object
      */
     constructor() {
-       this.seasons = ['summer', 'fall', 'winter', 'spring']
-       this.currentSeason = 0
+        this.seasons = ['summer', 'fall', 'winter', 'spring']
+        this.currentSeason = 0
     }
 
     /**
@@ -96,13 +96,13 @@ class Seasons {
      * seasons.next() // returns "summer"
      */
     next() {
-       const result = this.seasons[this.currentSeason]
-       if(this.currentSeason === 3) {
-        this.currentSeason = 0
-       } else {
-        this.currentSeason++
-       }
-       return result
+        const result = this.seasons[this.currentSeason]
+        if (this.currentSeason === 3) {
+            this.currentSeason = 0
+        } else {
+            this.currentSeason++
+        }
+        return result
     }
 }
 
@@ -136,14 +136,13 @@ class Car {
     drive(distance) {
         const milesCanDrive = this.tank * this.mpg
         if (distance <= milesCanDrive) {
-        this.odometer = this.odometer + distance
-        this.tank = this.tank - (distance / this.mpg)
-        return this.odometer
+            this.odometer = this.odometer + distance
+            this.tank = this.tank - (distance / this.mpg)
         } else {
-        this.odometer = this.odometer + milesCanDrive
-        this.tank = 0
-        return this.odometer
+            this.tank = 0
+            this.odometer = this.odometer + milesCanDrive
         }
+        return this.odometer
     }
 
     /**
@@ -158,7 +157,13 @@ class Car {
      * focus.refuel(99) // returns 600 (tank only holds 20)
      */
     refuel(gallons) {
-        // ✨ implement
+       const gallonsThatFit = this.tankSize - this.tank
+       if (gallons <= gallonsThatFit) {
+        this.tank = this.tank + gallons
+       } else {
+        this.tank = this.tankSize
+       }
+       return this.tank * this.mpg
     }
 }
 
